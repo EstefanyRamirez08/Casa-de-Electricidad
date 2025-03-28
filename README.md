@@ -1,6 +1,6 @@
 # ⚡ Casa de Electricidad
 
-![Banner](https://via.placeholder.com/1200x300?text=Casa+de+Electricidad)
+
 
 ## 📝 Descripción
 Casa de Electricidad es una aplicación web desarrollada con Spring Boot y Spring Security que implementa el patrón MVC en un proyecto Maven. Permite gestionar artículos y fábricas, así como administrar perfiles de usuario con roles de usuario y administrador.
