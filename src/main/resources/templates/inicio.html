@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{fragments/head :: head}"></head>
+
+<body style="background: linear-gradient(to right, #141e30, #243b55); height: 100vh; color: #fff;">
+    <nav th:replace="~{fragments/navbar :: nav}"></nav>
+    <div th:replace="~{fragments/mensajeEE :: div}"></div>
+
+    <!-- Encabezado con bienvenida personalizada -->
+    <header class="header text-center py-5">
+        <section class="container">
+            <h1 class="display-4 fw-bold mb-3">¡Bienvenido de nuevo a Casa de Electricidad EGG ⚡!</h1>
+            <h3 th:if="${session != null and session.usuariosession != null}">
+                Hola de vuelta, <span th:text="${session.usuariosession.nombre}"></span> 👋
+            </h3>
+
+            <!-- Imagen de perfil estilizada -->
+            <div class="imagenContainer mt-4">
+                <a class="d-flex justify-content-center align-items-center">
+                    <img class="rounded-circle shadow-lg" style="width: 180px; height: 180px; object-fit: cover;"
+                    <th:src="@{'/imagen/perfil/' + ${session.usuariosession.id}}"/>
+
+                </a>
+            </div>
+
+            <!-- Botones de navegación rápida -->
+            <div class="mt-5">
+                
+                <!--<a th:href="@{/perfil}" class="btn btn-warning btn-lg"><i class="fas fa-user-cog"></i> Mi Perfil</a> -->
+            </div>
+        </section>
+    </header>
+
+    <!-- Sección de información adicional -->
+    <section class="container text-center my-5">
+        <h4 class="fw-bold mb-4">¿Qué te gustaría hacer hoy?</h4>
+        <p class="lead">Explora nuestras ofertas, administra tu cuenta o ponte en contacto con nosotros si necesitas ayuda.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Scripts Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

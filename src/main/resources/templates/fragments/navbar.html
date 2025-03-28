@@ -1,0 +1,92 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand" href="/">
+            <img class="logo" src="/img/Logo.png" alt="Logo CasaDeElectricidad" width="80">
+        </a>
+
+        <!-- Botón hamburguesa -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Contenido del navbar -->
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto gap-2">
+
+                <!-- Sección Artículos -->
+                <li class="nav-item dropdown" th:if="${session.usuariosession != null}">
+                    <a class="nav-link dropdown-toggle" href="#" id="articulosDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" title="Administrar artículos">
+                        <i class="fas fa-lightbulb"></i> <span class="ms-1">Artículos</span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="articulosDropdown">
+                        <li><a class="dropdown-item" th:href="@{/articulo/lista}">📋 Listar Artículos</a></li>
+                        <li sec:authorize="hasRole('ADMIN')"><a class="dropdown-item" th:href="@{/articulo/registrar}">➕ Crear Artículo</a></li>
+                    </ul>
+                </li>
+
+                <!-- Sección Fábricas -->
+                <li class="nav-item dropdown" th:if="${session.usuariosession != null}">
+                    <a class="nav-link dropdown-toggle" href="#" id="fabricasDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" title="Administrar fábricas">
+                        <i class="fas fa-industry"></i> <span class="ms-1">Fábricas</span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="fabricasDropdown">
+                        <li><a class="dropdown-item" th:href="@{/fabrica/lista}">🏭 Listar Fábricas</a></li>
+                        <li sec:authorize="hasRole('ADMIN')"><a class="dropdown-item" th:href="@{/fabrica/registrar}">➕ Crear Fábrica</a></li>
+                    </ul>
+                </li>
+
+                <!-- Sección Usuarios (solo Admin) -->
+                <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')" th:if="${session.usuariosession != null}">
+                    <a class="nav-link dropdown-toggle" href="#" id="usuariosDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" title="Gestión de usuarios">
+                        <i class="fas fa-users-cog"></i> <span class="ms-1">Usuarios</span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="usuariosDropdown">
+                        <li><a class="dropdown-item" th:href="@{/admin/usuarios}">🔍 Listar Usuarios</a></li>
+                    </ul>
+                </li>
+
+                <!-- Sección Perfil -->
+                <li class="nav-item dropdown" th:if="${session.usuariosession != null}">
+                    <a class="nav-link dropdown-toggle" href="#" id="perfilDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" title="Tu perfil">
+                        <i class="fas fa-user-circle"></i> <span class="ms-1">Perfil</span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="perfilDropdown">
+                       <!-- <li><a class="dropdown-item" th:href="@{/perfil}">🛠 Editar Perfil</a></li>   -->
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="/logout">🚪 Cerrar Sesión</a></li>
+                    </ul>
+                </li>
+
+                <!-- Opciones de Registro/Login si NO hay sesión -->
+                <li class="nav-item" th:if="${session.usuariosession == null}">
+                    <a class="nav-link" href="/registrar" title="Regístrate"><i class="fas fa-user-plus"></i> ¡Regístrate!</a>
+                </li>
+                <li class="nav-item" th:if="${session.usuariosession == null}">
+                    <a class="nav-link" href="/login" title="Iniciar sesión"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<style>
+.navbar-nav .nav-link {
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.navbar-nav .dropdown-item:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+</style>

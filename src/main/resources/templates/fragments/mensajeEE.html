@@ -1,0 +1,15 @@
+<div th:fragment="mensajeEE">
+    <!-- Mensaje de error -->
+    <div th:if="${error != null}" class="alert alert-danger alert-dismissible fade show mensajeError" role="alert">
+        <strong>❌ Error:</strong>
+        <span th:text="${error}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <!-- Mensaje de éxito -->
+    <div th:if="${exito != null}" class="alert alert-success alert-dismissible fade show mensajeExito" role="alert">
+        <strong>✅ Éxito:</strong>
+        <span th:text="${exito}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>

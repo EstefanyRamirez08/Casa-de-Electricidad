@@ -1,0 +1,80 @@
+/* Fondo de la página */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('/img/fondo.png') !important; /* Ruta corregida */
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 1s ease-in-out; /* Animación de entrada */
+}
+
+/* Capa semitransparente para oscurecer el fondo */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -2; /* Asegura que quede detrás del fondo */
+}
+
+/* Header semi-transparente */
+header {
+    background-color: rgba(0, 86, 179, 0.8);
+    padding: 15px 0;
+    text-align: center;
+}
+
+/* Contenedor central */
+.contenedorMain {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+/* Footer fijo abajo */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 86, 179, 0.9);
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Imagen de perfil circular */
+.imagenContainer img {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    border: 3px solid #fff;
+}
+
+/* Efecto hover moderno en botones */
+.btn:hover {
+    background-color: #004b99;
+    transform: scale(1.05);
+    transition: 0.3s ease;
+}
+
+/* Animación de entrada suave */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

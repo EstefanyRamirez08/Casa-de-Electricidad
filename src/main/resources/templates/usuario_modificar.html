@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head}"></head>
+
+<body style="background: #f4f4f4; color: #333;">
+
+    <!-- Navbar -->
+    <nav th:replace="~{fragments/navbar :: nav}"></nav>
+
+    <div class="container mt-5">
+        <div class="card shadow-lg p-4 mx-auto" style="max-width: 500px;">
+            <h3 class="card-title text-center mb-4 text-primary"><i class="fas fa-user-edit"></i> Editar Usuario</h3>
+
+            <!-- Formulario de edición -->
+            <form class="formulario" th:action="@{/perfil/__${usuario.id}__}" method="POST" enctype="multipart/form-data">
+                <input type="hidden" th:value="${id}" name="id">
+
+                <!-- Nombre -->
+                <div class="form-group mb-3">
+                    <label for="nombre" class="form-label fw-bold">Nombre</label>
+                    <input type="text" id="nombre" class="form-control" name="nombre" th:value="${usuario.nombre}" required>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group mb-3">
+                    <label for="email" class="form-label fw-bold">Correo Electrónico</label>
+                    <input type="email" id="email" class="form-control" name="email" th:value="${usuario.email}" required>
+                </div>
+
+                <!-- Imagen de perfil -->
+                <div class="form-group mb-3">
+                    <label for="archivo" class="form-label fw-bold">Foto de perfil</label>
+                    <input type="file" id="archivo" class="form-control" name="archivo">
+                    <small class="text-muted">Formatos permitidos: JPG, PNG, JPEG</small>
+                </div>
+
+                <!-- Contraseña -->
+                <div class="form-group mb-3">
+                    <label for="password" class="form-label fw-bold">Nueva Contraseña</label>
+                    <input type="password" id="password" class="form-control" name="password" placeholder="Contraseña">
+                </div>
+
+                <!-- Confirmación de contraseña -->
+                <div class="form-group mb-3">
+                    <label for="password2" class="form-label fw-bold">Confirmar Contraseña</label>
+                    <input type="password" id="password2" class="form-control" name="password2" placeholder="Repetir contraseña">
+                </div>
+
+                <!-- Botón de actualizar -->
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary mt-3 botones"><i class="fas fa-save"></i> Actualizar</button>
+                </div>
+            </form>
+
+            <!-- Mensaje de error/éxito -->
+            <div th:replace="~{fragments/mensajeEE :: div}"></div>
+
+            <!-- Botón de volver -->
+            <div class="text-center mt-4">
+                <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin/usuarios}" class="btn btn-secondary botonVolver botones"><i class="fas fa-arrow-left"></i> Volver</a>
+                <a sec:authorize="hasRole('USER')" th:href="@{/inicio}" class="btn btn-secondary botonVolver botones"><i class="fas fa-arrow-left"></i> Volver</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

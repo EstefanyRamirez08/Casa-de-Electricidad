@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{fragments/head :: head}"></head>
+
+<body>
+    <nav th:replace="~{fragments/navbar :: nav}"></nav>
+
+    <div class="container m-5">
+        <h2 class="text-center mb-4">Listado de Fábricas</h2>
+
+        <div th:replace="~{fragments/mensajeEE :: div}"></div>
+
+        <table class="table table-striped table-hover table-bordered text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Id de la Fábrica</th>
+                    <th scope="col">Nombre de la Fábrica</th>
+                    <th sec:authorize="hasRole('ADMIN')" scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="fabrica : ${fabricas}">
+                    <th scope="row" th:text="${fabrica.idFabrica}"></th>
+                    <td th:text="${fabrica.nombreFabrica}"></td>
+                    <td sec:authorize="hasRole('ADMIN')">
+                        <a th:href="@{/fabrica/modificar/__${fabrica.idFabrica}__}"
+                            class="btn btn-warning btn-sm me-2"
+                            onclick="return confirm('¿Seguro que deseas modificar esta fábrica?')">
+                            <i class="fas fa-edit"></i> Modificar
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="text-center mt-4">
+            <a th:href="@{/inicio}" class="btn btn-secondary">Volver</a>
+        </div>
+    </div>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

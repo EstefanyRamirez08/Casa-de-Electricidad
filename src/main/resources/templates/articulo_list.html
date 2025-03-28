@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/head :: head}"></head>
+
+<body>
+    <nav th:replace="~{fragments/navbar :: nav}"></nav>
+
+    <div class="container mt-5">
+        <h2 class="mb-4">Lista de Artículos</h2>
+
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Número</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Fábrica</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col" sec:authorize="hasRole('ADMIN')">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="articulo : ${articulos}">
+                    <td th:text="${articulo.idArticulo}"></td>
+                    <td th:text="${articulo.nombreArticulo}"></td>
+                    <td th:text="${articulo.nroArticulo}"></td>
+                    <td th:text="${articulo.descripcionArticulo}"></td>
+                    <td th:text="${articulo.fabrica.nombreFabrica}"></td>
+                    <td>
+                        <img th:src="@{'/articulo/imagen/' + ${articulo.idArticulo}}" alt="Imagen del artículo" width="50" height="50" class="img-thumbnail">
+                    </td>
+                    <td>
+                        <a sec:authorize="hasRole('ADMIN')" class="btn btn-warning btn-sm me-2" th:href="@{/articulo/modificar/__${articulo.idArticulo}__}">
+                            <i class="fas fa-edit"></i> Modificar
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div th:replace="~{fragments/mensajeEE :: div}"></div>
+
+        <div class="text-center mt-4">
+            <a th:href="@{/inicio}" class="btn btn-primary">Volver</a>
+        </div>
+    </div>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

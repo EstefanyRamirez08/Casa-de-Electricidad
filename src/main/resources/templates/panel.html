@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{fragments/head :: head}"></head>
+
+<body style="background: linear-gradient(120deg, #1e3c72, #2a5298); color: #fff; min-height: 100vh;">
+
+    <nav th:replace="~{fragments/navbar :: nav}"></nav>
+
+    <header class="header text-center py-5">
+        <section class="contenedorMain">
+            <div class="tituloCasaDeElectricidad mb-4">
+                <h1 class="display-4 fw-bold">Bienvenido a Casa de Electricidad EGG ⚡</h1>
+                <p class="lead">Tu destino para encontrar los mejores artículos eléctricos</p>
+            </div>
+
+            <!-- Sección de acciones rápidas -->
+            <div class="container mt-4">
+                <div class="row justify-content-center">
+                    <!--<div class="col-md-4">
+                        <a class="btn btn-outline-light btn-lg w-100 mb-3" th:href="@{/articulos}">
+                            <i class="fas fa-bolt"></i> Ver Artículos
+                        </a>
+                    </div>
+
+                    <div class="col-md-4">
+                        <a class="btn btn-outline-light btn-lg w-100 mb-3" th:href="@{/perfil}">
+                            <i class="fas fa-user-circle"></i> Mi Perfil
+                        </a>
+                    </div>
+
+                    <div class="col-md-4">
+                        <a class="btn btn-success btn-lg w-100 mb-3" th:href="@{/nuevo-articulo}" sec:authorize="hasRole('ADMIN')">
+                            <i class="fas fa-plus-circle"></i> Agregar Artículo
+                        </a>
+                    </div>
+                </div>-->
+            </div>
+
+            <!-- Imagen representativa -->
+            <div class="mt-4">
+                <img th:src="@{/img/electricidad.jpg}" class="img-fluid rounded" style="max-width: 400px;" alt="Imagen eléctrica">
+            </div>
+
+            <!-- Fondos decorativos -->
+            <div class="bg-circle-1 bg-circle"></div>
+            <div class="bg-circle-2 bg-circle"></div>
+            <div class="bg-circle-3 bg-circle"></div>
+            <div class="bg-circle-4 bg-circle"></div>
+        </section>
+    </header>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
+
+</body>
+
+</html>

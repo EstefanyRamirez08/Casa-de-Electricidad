@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{fragments/head :: head}"></head>
+
+<body style="background: #f4f4f4; color: #333;">
+
+    <!-- Navbar -->
+    <nav th:replace="~{fragments/navbar :: nav}"></nav>
+
+    <!-- Mensajes de error/éxito -->
+    <div th:replace="~{fragments/mensajeEE :: div}"></div>
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4 text-primary">Gestión de Usuarios</h2>
+
+        <!-- Tabla de usuarios -->
+        <div class="table-responsive shadow-lg">
+            <table class="table table-hover table-striped align-middle">
+                <thead class="table-dark text-center">
+                    <tr>
+                        <th scope="col">ID Usuario</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Foto de Perfil</th>
+                        <th scope="col">Rol</th>
+                        <th scope="col">Cambiar Rol</th>
+                        <th scope="col">Modificar</th>
+                    </tr>
+                </thead>
+
+                <tbody class="text-center" th:each="usuario : ${usuarios}">
+                    <tr>
+                        <!-- ID -->
+                        <td th:text="${usuario.id}"></td>
+
+                        <!-- Nombre -->
+                        <td th:text="${usuario.nombre}"></td>
+
+                        <!-- Foto de perfil -->
+                        <td>
+                            <img th:if="${usuario.imagen != null}" class="rounded-circle shadow" 
+                                 th:src="@{/imagen/perfil/__${usuario.id}__}" 
+                                 alt="Foto Perfil" width="50" height="50">
+                            <span th:if="${usuario.imagen == null}" class="text-muted fst-italic">Sin imagen</span>
+                        </td>
+
+                        <!-- Rol -->
+                        <td th:text="${usuario.rol}" class="fw-bold"
+                            th:classappend="${usuario.rol == 'ADMIN' ? 'text-danger' : 'text-success'}">
+                        </td>
+
+                        <!-- Cambiar rol -->
+                        <td>
+                            <a th:href="@{/admin/modificarRol/__${usuario.id}__}" class="btn btn-warning btn-sm">
+                                <i class="fas fa-sync-alt"></i> Cambiar
+                            </a>
+                        </td>
+
+                        <!-- Modificar usuario -->
+                        <td>
+                            <a th:href="@{/admin/usuario/{id}(id=${usuario.id})}" class="btn btn-info btn-sm">
+                                <i class="fas fa-edit"></i> Modificar
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Botón para volver al dashboard -->
+        <div class="text-center mt-4">
+            <a th:href="@{/admin/dashboard}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Volver</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
